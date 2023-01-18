@@ -1,0 +1,85 @@
+@use 'stilos';
+
+html,body {
+  font-family: stilos.$fuente;
+  font-weight: 700;
+  height: 100%;
+}
+body {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  background-color: stilos.$color-fondo;
+}
+.block {
+  background-color: stilos.$blanco;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+@media (min-width: 768px)
+.container {
+    max-width: 720px;
+}
+
+input[type="number"] {
+  text-align: right;
+  appearance: textfield;
+  background-color: stilos.$color-fondo;
+  border-radius: 5px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.blue-block {
+  padding: 10%;
+}
+.inner-block {
+  background-color: stilos.$color-principal;
+  border-radius: 10px;
+  color: stilos.$blanco;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.headers {
+  font-size: 12px;
+  margin-bottom: 40px;
+}
+.low-headers {
+  font-size: 10px;
+}
+.dollar {
+  background-color: stilos.$color-fondo;
+  border: none;
+}
+.boton {
+  background-color: stilos.$color-principal;
+  color: stilos.$blanco;
+  border-radius: 5px;
+  font-size: 24px;
+  max-width: 50%;
+}
+.boton:hover {
+  background-color: stilos.$color-fuente-resaltado;
+}
+.tip-amount,
+.total {
+  font-size: 34px;
+  color: stilos.$color-fuente-resaltado;
+}
+.reset {
+  margin-top: 30%;
+}
+
