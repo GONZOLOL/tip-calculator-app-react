@@ -1,50 +1,133 @@
-@use 'stilos';
+@use "stilos";
 
-html,body {
+html, body {
   font-family: stilos.$fuente;
   font-weight: 700;
-  height: 100%;
 }
 body {
-  display: flex;
-  align-items: center;
-  align-self: center;
+  display: grid;
   justify-content: center;
   background-color: stilos.$color-fondo;
 }
+
 .block {
   background-color: stilos.$blanco;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 20px;
+  padding: 35px;
   margin-top: 10%;
   margin-bottom: 5%;
 }
-@media (min-width: 768px)
+
 .container {
-    max-width: 720px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5%;
+}
+
+.col1 {
+  display: grid;
+  grid-column: 1;
+  justify-content: space-between;
+}
+.col2 {
+  grid-column: 2;
+}
+
+.inner-block {
+  background-color: stilos.$color-principal;
+  border-radius: 10px;
+  color: stilos.$blanco;
+  padding: 10%;
+}
+
+.sub-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5%;
+}
+
+.columna1 {
+  grid-column: 1;
+}
+.columna2 {
+  display: grid;
+  grid-column: 2;
+  align-items: center;
 }
 
 input[type="number"] {
   text-align: right;
-  appearance: textfield;
   background-color: stilos.$color-fondo;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   font-size: 24px;
   display: flex;
   justify-content: center;
+  border: none;
+  padding: 10px;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.blue-block {
-  padding: 10%;
+.headers {
+  font-size: 12px;
 }
-.inner-block {
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.input-group-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.dollar {
+  background-color: stilos.$color-fondo;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.btn-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2%;
+}
+
+.boton1 {
+  grid-row: 1/2;
+}
+.boton2 {
+  grid-row: 2/2;
+}
+.boton1:hover,
+.boton2:hover {
+  background-color: stilos.$color-fuente-resaltado;
+}
+
+.btn {
   background-color: stilos.$color-principal;
-  border-radius: 10px;
   color: stilos.$blanco;
+  border-radius: 5px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.custom {
+  text-align: center !important;
 }
 
 h1 {
@@ -53,33 +136,26 @@ h1 {
   font-weight: 700;
 }
 
-.headers {
-  font-size: 12px;
-  margin-bottom: 40px;
-}
 .low-headers {
   font-size: 10px;
 }
-.dollar {
-  background-color: stilos.$color-fondo;
-  border: none;
-}
-.boton {
-  background-color: stilos.$color-principal;
-  color: stilos.$blanco;
-  border-radius: 5px;
-  font-size: 24px;
-  max-width: 50%;
-}
-.boton:hover {
-  background-color: stilos.$color-fuente-resaltado;
-}
+
 .tip-amount,
 .total {
   font-size: 34px;
   color: stilos.$color-fuente-resaltado;
 }
 .reset {
-  margin-top: 30%;
+  display: grid;
+  grid-column: 1 / span 2;
+  margin-bottom: 20px;
+  background-color: stilos.$color-fuente-resaltado-leve;
+  color: stilos.$color-principal ;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 2%;
 }
 
+.reset:hover {
+  background-color: stilos.$color-fuente-resaltado;
+}
