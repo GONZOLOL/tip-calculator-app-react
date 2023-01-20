@@ -159,3 +159,25 @@ h1 {
 .reset:hover {
   background-color: stilos.$color-fuente-resaltado;
 }
+
+@media (max-width: 500px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inner-block{
+    margin-block: 10%;
+  }
+}
+
+@media (max-width: 735px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inner-block{
+    margin-block: 10%;
+  }
+}
