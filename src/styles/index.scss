@@ -160,7 +160,7 @@ h1 {
   background-color: stilos.$color-fuente-resaltado;
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -171,7 +171,7 @@ h1 {
   }
 }
 
-@media (max-width: 735px) {
+@media screen and (max-width: 375px) {
   .container {
     display: flex;
     flex-direction: column;
