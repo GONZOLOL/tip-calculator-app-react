@@ -28,9 +28,12 @@ body {
   display: grid;
   grid-column: 1;
   justify-content: space-between;
+  row-gap: 10%;
 }
 .col2 {
+  display: grid;
   grid-column: 2;
+  row-gap: 10%;
 }
 
 .inner-block {
@@ -91,6 +94,24 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
   border-radius: 5px 0 0 5px;
 }
+.errorBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.error {
+  text-align: right;
+  font-size: 12px;
+  color: red;
+}
+
+.tipError{
+  text-align: right;
+  font-size: 12px;
+  color: red;
+}
 
 .btn-container {
   display: grid;
@@ -128,6 +149,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .custom {
   text-align: center !important;
+  border-radius: 5px !important;
 }
 
 h1 {
@@ -142,12 +164,17 @@ h1 {
 
 .tip-amount,
 .total {
+  display: flex;
   font-size: 34px;
   color: stilos.$color-fuente-resaltado;
+  align-items: center;
+  font-weight: 800;
+
 }
 .reset {
   display: grid;
   grid-column: 1 / span 2;
+  margin-top: 30%;
   margin-bottom: 20px;
   background-color: stilos.$color-fuente-resaltado-leve;
   color: stilos.$color-principal ;
