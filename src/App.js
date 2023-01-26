@@ -29,8 +29,6 @@ function App() {
   }
 
   useEffect(() => {
-
-    
     if (bill && tip && people) {
       if (bill <= 0) {
         document.getElementById("bill").style.border = "2px solid red";
@@ -49,7 +47,6 @@ function App() {
     }
   },[bill,tip,people]);
 
-      
   return (
   <>
     <h1>S P L I <br/>T T E R</h1>
@@ -62,14 +59,13 @@ function App() {
                 {bill && bill <= 0 ? <div className='error' dangerouslySetInnerHTML = {{ __html: "Can't be 0" }} /> : ""}
               </div>
 
-              <div className='input-group' id="bill">
-                <div className='input-group-text dollar'>
-                  <AttachMoneyIcon color='disabled' />
-                </div>
-                <div>
+              <div className='input-wrapper' id="bill">
                   <input type="number" placeholder="0" name="bill" value={bill} min="1" pattern="^[0-9]+" required onChange={handleBillChange}/>
-                </div>
+                  <div className='input-icon'>
+                    <AttachMoneyIcon color='disabled' />
+                  </div>
               </div>
+
             </div>
             <div>
               <div className='errorBlock' id='error1'>
@@ -91,13 +87,11 @@ function App() {
                 <span className='headers'>Number of People</span>
                 {people && (people <=0 || !people % 1 !== 0) ?  <div className='error' dangerouslySetInnerHTML = {{ __html: "Can't be zero or decimal" }} /> : ""}
               </div>
-              <div className='input-group' id="people">
-                <div className='input-group-text dollar'>
-                  <Person2Icon color='disabled' />
-                </div>
-                <div>
-                  <input type="number" placeholder="0" name="people" value={people} min="1" pattern="^[0-9]+" required onChange={handlePeopleChange}/>
-                </div>
+              <div className='input-wrapper' id="people">
+                <input type="number" placeholder="0" name="people" value={people} min="1" pattern="^[0-9]+" required onChange={handlePeopleChange}/>
+                  <div className='input-icon'>
+                    <Person2Icon color='disabled' />
+                  </div>
               </div>
             </div>
           </div>

@@ -70,11 +70,13 @@ input[type="number"] {
   padding: 10px;
 
   &:focus {
-    border: none;
+    border: 2px solid stilos.$strong-cyan;
+    outline: none;
   }
 
   &:active {
-    border: none;
+    border: 2px solid stilos.$strong-cyan;
+    outline: none;
   }
 }
 input[type="number"]::-webkit-inner-spin-button,
@@ -86,24 +88,18 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 12px;
 }
 
-.input-group {
-  display: flex;
-  align-items: stretch;
+.input-wrapper{
+  position: relative;
+}
+.input-icon{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.input-group-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-}
-
-.dollar {
-  background-color: stilos.$light-grayish-cyan;
-  border: none;
-  border-radius: 5px 0 0 5px;
-  font-weight: 100;
-}
 .errorBlock {
   display: flex;
   flex-direction: row;
@@ -194,15 +190,15 @@ h1 {
   display: grid;
   grid-column: 1 / span 2;
   margin-top: 30%;
-  margin-bottom: 30px;
   background-color: #26c0ab66;
   color: stilos.$very-dark-cyan;
   border-radius: 5px;
-  font-size: 12px;
-  padding: 5%;
+  font-size: 15px;
+
   text-transform: uppercase;
   border: none;
   font-weight: 700;
+  align-items: center;
 }
 
 .reset:hover {
