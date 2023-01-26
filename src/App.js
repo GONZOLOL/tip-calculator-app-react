@@ -11,6 +11,8 @@ function App() {
 
   let [boton, setBoton] = useState("");
 
+  const link = document.querySelectorAll('.btn');
+
   console.log(bill, tip, people, boton);
 
   const handleBillChange = (event) => {
@@ -28,17 +30,22 @@ function App() {
     setTip(event.target.value);
   };
 
+  const resetButtons = (event) => {
+    link.forEach(y => y.classList.remove('active'));
+  }
+
   function refreshPage() {
-    window.location.reload(false);
+    setBill("");
+    setTip("");
+    link.forEach(y => y.classList.remove('active'));
+    setPeople("");
+    setTipAmount("0.00");
+    setTotal("0.00");
   }
 
   useEffect(() => {
-    const link = document.querySelectorAll('button.btn');
-    if (boton) {      
-      const resetL = () => {
-        link.forEach(y => y.classList.remove('active'));
-      }
-      resetL();
+    if (boton) {   //El problema esta aqui, se mete y lo cambia todo    
+      link.forEach(y => y.classList.remove('active'));
       document.getElementById(boton).classList.add('active');
     }
     if (bill && tip && people) {
@@ -46,19 +53,17 @@ function App() {
         document.getElementById("bill").style.outline = "2px solid red";
       } else {document.getElementById("bill").style.outline = "none";}
 
-      if (people <=0 || people % 1 !== 0) {
+      if (people <=0 && people % 1 !== 0) {
           document.getElementById("people").style.outline = "2px solid red";
       } else {document.getElementById("people").style.outline = "none";}
       
-      if (tip < 0 || tip > 100) {
+      if (tip < 0 && tip > 100) {
         document.getElementById("custom").style.outline = "2px solid red";
-      } else if(
-        link.forEach(y => y.classList) !== 'active') {
-          document.getElementById("custom").style.outline = "red";
       }
-      
-      setTipAmount((((tip*bill)/100) / people).toFixed(2));
-      setTotal((((tip*bill)/100) + bill / people).toFixed(2));
+      if (bill && tip && people && bill > 0 && people > 0 && people % 1 === 0 && tip >= 0 && tip < 100) {
+        setTipAmount((((tip*bill)/100) / people).toFixed(2));
+        setTotal((((tip*bill)/100) + bill / people).toFixed(2));
+      }
     }
   },[bill,tip,people]);
 
@@ -74,8 +79,8 @@ function App() {
                 {bill && bill <= 0 ? <div className='error' dangerouslySetInnerHTML = {{ __html: "Can't be 0" }} /> : ""}
               </div>
 
-              <div className='input-wrapper' id="bill">
-                  <input type="number" placeholder="0" name="bill" value={bill} min="1" pattern="^[0-9]+" required onChange={handleBillChange}/>
+              <div className='input-wrapper'>
+                  <input id="bill" type="number" placeholder="0" name="bill" value={bill} min="1" pattern="^[0-9]+" required onChange={handleBillChange}/>
                   <div className='input-icon'>
                     <AttachMoneyIcon color='disabled' />
                   </div>
@@ -94,7 +99,7 @@ function App() {
                   <button id="btn4" value="25" name="tip" autoComplete="off" className='btn' onClick={handleClick}>25%</button>
                   <button id="btn5" value="50" name="tip" autoComplete="off" className='btn' onClick={handleClick}>50%</button>
 
-                  <input type="number" placeholder="Custom" id="custom" min="0" max="100" pattern="^[0-9]+" className='custom' onChange={handleCustomTip}/>
+                  <input type="number" placeholder="Custom" id="custom" min="0" max="100" pattern="^[0-9]+" className='custom' onInput={resetButtons} onChange={handleCustomTip} />
               </div>
             </div>
             <div>
@@ -102,8 +107,8 @@ function App() {
                 <span className='headers'>Number of People</span>
                 {people && (people <=0 || !people % 1 !== 0) ?  <div className='error' dangerouslySetInnerHTML = {{ __html: "Can't be zero or decimal" }} /> : ""}
               </div>
-              <div className='input-wrapper' id="people">
-                <input type="number" placeholder="0" name="people" value={people} min="1" pattern="^[0-9]+" required onChange={handlePeopleChange}/>
+              <div className='input-wrapper'>
+                <input id="people" type="number" placeholder="0" name="people" value={people} min="1" pattern="^[0-9]+" required onChange={handlePeopleChange}/>
                   <div className='input-icon'>
                     <Person2Icon color='disabled' />
                   </div>
