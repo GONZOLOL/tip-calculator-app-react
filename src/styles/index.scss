@@ -70,13 +70,11 @@ input[type="number"] {
   padding: 10px;
 
   &:focus {
-    border: 2px solid stilos.$strong-cyan;
-    outline: none;
+    outline: 2px solid stilos.$strong-cyan;
   }
 
   &:active {
-    border: 2px solid stilos.$strong-cyan;
-    outline: none;
+    outline: 2px solid stilos.$strong-cyan;
   }
 }
 input[type="number"]::-webkit-inner-spin-button,
