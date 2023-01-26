@@ -34,6 +34,7 @@ function App() {
         document.getElementById("bill").style.border = "2px solid red";
       } else if (people <=0 || people % 1 !== 0) {
           document.getElementById("people").style.border = "2px solid red";
+          
       } else if (tip < 0) {
         document.getElementById("custom").style.border = "2px solid red";
       } 
