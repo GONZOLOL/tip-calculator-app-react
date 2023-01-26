@@ -9,14 +9,18 @@ function App() {
   let [tipAmount, setTipAmount] = useState("0.00");
   let [total, setTotal] = useState("0.00");
 
-  console.log(bill, tip, people);
+  let [boton, setBoton] = useState("");
+
+  console.log(bill, tip, people, boton);
 
   const handleBillChange = (event) => {
     setBill(event.target.value);
   };
   const handleClick = (event) => {
     setTip(event.target.value);
+    setBoton(event.target.id);
   };
+
   const handlePeopleChange = (event) => {
     setPeople(event.target.value);
   };
@@ -29,22 +33,32 @@ function App() {
   }
 
   useEffect(() => {
+    const link = document.querySelectorAll('button.btn');
+    if (boton) {      
+      const resetL = () => {
+        link.forEach(y => y.classList.remove('active'));
+      }
+      resetL();
+      document.getElementById(boton).classList.add('active');
+    }
     if (bill && tip && people) {
       if (bill <= 0) {
-        document.getElementById("bill").style.border = "2px solid red";
-      } else if (people <=0 || people % 1 !== 0) {
-          document.getElementById("people").style.border = "2px solid red";
-          
-      } else if (tip < 0) {
-        document.getElementById("custom").style.border = "2px solid red";
-      } 
-      else { 
-        setTipAmount((((tip*bill)/100) / people).toFixed(2));
-        setTotal((((tip*bill)/100) + bill / people).toFixed(2));
+        document.getElementById("bill").style.outline = "2px solid red";
+      } else {document.getElementById("bill").style.outline = "none";}
 
-        document.getElementById("bill").style.border = "none";
-        document.getElementById("people").style.border = "none";
-        }
+      if (people <=0 || people % 1 !== 0) {
+          document.getElementById("people").style.outline = "2px solid red";
+      } else {document.getElementById("people").style.outline = "none";}
+      
+      if (tip < 0 || tip > 100) {
+        document.getElementById("custom").style.outline = "2px solid red";
+      } else if(
+        link.forEach(y => y.classList) !== 'active') {
+          document.getElementById("custom").style.outline = "red";
+      }
+      
+      setTipAmount((((tip*bill)/100) / people).toFixed(2));
+      setTotal((((tip*bill)/100) + bill / people).toFixed(2));
     }
   },[bill,tip,people]);
 
@@ -71,14 +85,14 @@ function App() {
             <div>
               <div className='errorBlock' id='error1'>
               <span className='headers'>Select Tip %</span>
-              {tip && tip < 0 ?  <div className='tipError' dangerouslySetInnerHTML = {{ __html: "Can't be less than zero" }} /> : ""}
+              {tip && (tip < 0 || tip > 100) ?  <div className='tipError' dangerouslySetInnerHTML = {{ __html: "The number must be (0-100)" }} /> : ""}
               </div>
               <div className='btn-container'>
-                  <button id="btn-1" value="5" name="tip" autoComplete="off" className='btn' onChange={handleClick} >5%</button>
-                  <button id="btn-2" value="10" name="tip" autoComplete="off" className='btn' onChange={handleClick} >10%</button>
-                  <button id="btn-3" value="15" name="tip" autoComplete="off" className='btn' onChange={handleClick} >15%</button>
-                  <button id="btn-4" value="25" name="tip" autoComplete="off" className='btn' onChange={handleClick} >25%</button>
-                  <button id="btn-5" value="50" name="tip" autoComplete="off" className='btn' onChange={handleClick} >50%</button>
+                  <button id="btn1" value="5" name="tip" autoComplete="off" className='btn' onClick={handleClick}>5%</button>
+                  <button id="btn2" value="10" name="tip" autoComplete="off" className='btn' onClick={handleClick}>10%</button>
+                  <button id="btn3" value="15" name="tip" autoComplete="off" className='btn' onClick={handleClick}>15%</button>
+                  <button id="btn4" value="25" name="tip" autoComplete="off" className='btn' onClick={handleClick}>25%</button>
+                  <button id="btn5" value="50" name="tip" autoComplete="off" className='btn' onClick={handleClick}>50%</button>
 
                   <input type="number" placeholder="Custom" id="custom" min="0" max="100" pattern="^[0-9]+" className='custom' onChange={handleCustomTip}/>
               </div>
