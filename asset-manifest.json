@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tip-calculator-app-react/static/css/main.562be486.css",
-    "main.js": "/tip-calculator-app-react/static/js/main.b4ce577c.js",
+    "main.css": "/tip-calculator-app-react/static/css/main.f5cb8e9f.css",
+    "main.js": "/tip-calculator-app-react/static/js/main.4002c845.js",
     "index.html": "/tip-calculator-app-react/index.html",
-    "main.562be486.css.map": "/tip-calculator-app-react/static/css/main.562be486.css.map",
-    "main.b4ce577c.js.map": "/tip-calculator-app-react/static/js/main.b4ce577c.js.map"
+    "main.f5cb8e9f.css.map": "/tip-calculator-app-react/static/css/main.f5cb8e9f.css.map",
+    "main.4002c845.js.map": "/tip-calculator-app-react/static/js/main.4002c845.js.map"
   },
   "entrypoints": [
-    "static/css/main.562be486.css",
-    "static/js/main.b4ce577c.js"
+    "static/css/main.f5cb8e9f.css",
+    "static/js/main.4002c845.js"
   ]
 }
