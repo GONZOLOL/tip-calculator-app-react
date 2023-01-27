@@ -30,36 +30,45 @@ function App() {
     setTip(event.target.value);
   };
 
-  const resetButtons = (event) => {
+  const resetButtons = () => {
     link.forEach(y => y.classList.remove('active'));
   }
 
   function refreshPage() {
     setBill("");
+    document.getElementById("bill").style.outline = "none";
     setTip("");
-    link.forEach(y => y.classList.remove('active'));
+    document.getElementById("custom").style.outline = "none";
+    document.getElementById("custom").value = "";
+    resetButtons();
     setPeople("");
+    document.getElementById("people").style.outline = "none";
     setTipAmount("0.00");
     setTotal("0.00");
+    setBoton("");
   }
 
   useEffect(() => {
-    if (boton) {   //El problema esta aqui, se mete y lo cambia todo    
+    if (boton) {
       link.forEach(y => y.classList.remove('active'));
       document.getElementById(boton).classList.add('active');
+      document.getElementById("custom").value = "";
+      setBoton("");
     }
+    
     if (bill && tip && people) {
       if (bill <= 0) {
         document.getElementById("bill").style.outline = "2px solid red";
       } else {document.getElementById("bill").style.outline = "none";}
 
-      if (people <=0 && people % 1 !== 0) {
+      if (people <=0 || people % 1 !== 0) {
           document.getElementById("people").style.outline = "2px solid red";
       } else {document.getElementById("people").style.outline = "none";}
       
-      if (tip < 0 && tip > 100) {
+      if (tip < 0 || tip > 100) {
         document.getElementById("custom").style.outline = "2px solid red";
-      }
+      } else {document.getElementById("custom").style.outline = "none";}
+
       if (bill && tip && people && bill > 0 && people > 0 && people % 1 === 0 && tip >= 0 && tip < 100) {
         setTipAmount((((tip*bill)/100) / people).toFixed(2));
         setTotal((((tip*bill)/100) + bill / people).toFixed(2));
@@ -99,7 +108,7 @@ function App() {
                   <button id="btn4" value="25" name="tip" autoComplete="off" className='btn' onClick={handleClick}>25%</button>
                   <button id="btn5" value="50" name="tip" autoComplete="off" className='btn' onClick={handleClick}>50%</button>
 
-                  <input type="number" placeholder="Custom" id="custom" min="0" max="100" pattern="^[0-9]+" className='custom' onInput={resetButtons} onChange={handleCustomTip} />
+                  <input type="number" placeholder="Custom" id="custom" min="0" max="100" pattern="^[0-9]+" className='custom' onClick={resetButtons} onChange={handleCustomTip} />
               </div>
             </div>
             <div>
